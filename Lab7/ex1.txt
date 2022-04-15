@@ -1,0 +1,30 @@
+CREATE TABLE Order
+(
+orderID int PRIMARY KEY,
+date date NOT NULL,
+customerID int,
+CONSTRAINT FK_Order_customerID FOREIGN KEY (customerID) REFERENCES Customer(customerID)
+);
+
+CREATE TABLE Customer
+(
+customerID int PRIMARY KEY,
+customerName char(100) NOT NULL,
+city char(50) NOT NULL
+);
+
+CREATE TABLE OrderedItems
+(
+orderID int,
+itemID int,
+quant int NOT NULL,
+CONSTRAINT FK_OrderedItems_orderID FOREIGN KEY (orderID) REFERENCES Order(orderID),
+CONSTRAINT FK_OrderedItems_itemID FOREIGN KEY (itemID) REFERENCES Item(itemID)
+);
+
+CREATE TABLE Item
+(
+itemID int PRIMARY KEY,
+itemName char(50) NOT NULL,
+price double NOT NULL
+);
